@@ -1,0 +1,13 @@
+{
+  "name": "ecmascript",
+  "version": "1.0.0",
+  "description": "some training",
+  "main": "video1cheatSheet.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hazem saeid",
+  "license": "ISC"
+}
