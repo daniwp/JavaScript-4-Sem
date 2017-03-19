@@ -1,0 +1,31 @@
+{
+  "name": "mean-seed",
+  "version": "1.0.0",
+  "description": "Custom seed for the MEAN.JS Stack",
+  "author": "Emil Rosenius Pedersen",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "start": "node ./bin/www"
+  },
+  "main": "bin/www",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "*",
+    "chai": "^3.5.0",
+    "express": "*",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "^0.4.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "jwt-simple": "^0.5.0",
+    "mocha": "^2.4.5",
+    "mongojs": "*",
+    "mongoose": "^4.4.9",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.0.0",
+    "path": "^0.12.7",
+    "supertest": "^1.2.0"
+  }
+}
