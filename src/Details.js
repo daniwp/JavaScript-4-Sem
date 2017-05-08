@@ -1,12 +1,12 @@
-import React from 'react'
-import {Link} from 'react-router'
+
+import React from "react"
+import {Link} from "react-router"
 
 export default class Details extends React.Component {
   render() {
-    let id = this.props.params.id;
-    let book = this.props.route.books.filter((book) => {
-      return book.id === Number(id);
-    })[0];
+    const id = this.props.params.id;
+    const store = this.props.route.bookStore;
+    let book = store.getBook(id);
     return (
       <div>
         <h3 style={{color: "steelblue"}}>Detailed info for the title: {book.title}</h3>

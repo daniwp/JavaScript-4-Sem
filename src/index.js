@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './App';
-import './index.css';
-import bookStore from './models/bookStore';
-import RouterComponent from './RouterComponent'
+import "./style.css";
+import RouterComponent from './RouterComponent';
+import bookStore from "./models/bookStore";
 
 ReactDOM.render(
-  <RouterComponent  bookStore={bookStore}/>,
+  <RouterComponent bookStore={bookStore}  />,
   document.getElementById('root')
 );

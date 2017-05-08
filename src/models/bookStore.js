@@ -1,50 +1,65 @@
+class BookStore {
 
-//DataStore for this Demo
+  nextId = 5;
 
-export default class BookStore {
-
-  nextId = 4;
+  nextID() {
+    return this.nextId++;
+  }
 
   constructor() {
-
     this._books = [];
     this.fetchBooks();
+    this._observer = null;
   }
-
-  fetchBooks() {
-    fetch("http://localhost:7777/books")
-      .then((response) => response.json())
-      .then((response) => {
-        this._books = response;
-        console.log(JSON.stringify(this._books))
-      })
-  }
-
-  /*nextID = function() {
-    return nextId++;
-  } */
-
   get books() {
     return this._books;
   }
-  /*
-    add = function (book) {
-      book.id = this.nextId();
-      this._books.push(book);
-    }
-  
-    delete = function (book) {
-      this._books.remove(book);
-    }
-  
-    update = function(book) {
-      this._books.forEach((value) => {
-        if (book.id === value.id) {
-          this._books.remove(value);
+
+  subscribe(observer) {
+    this._observer = observer;
+  }
+
+  getBook(id) {
+    return this._books.filter((book) => {
+      return book.id === Number(id);
+    })[0];
+  }
+
+  addBook = (title, info, moreInfo) => {
+    this._books.push({
+      id: this.nextID(),
+      title: title,
+      info: info,
+      moreInfo: moreInfo
+    });
+    this._observer.dataReady();
+  }
+
+  editBook(book) {
+    this._books.remove(this._books[book.id]);
+    this._books.push(book);
+  }
+
+  deleteBook(book) {
+    console.log("deleting")
+    var index = this._books.indexOf(book);
+    this._books.splice(index, 1);
+    this._observer.dataReady();
+  }
+
+  fetchBooks = () => {
+    fetch("http://localhost:7777/books")
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        this._books = response;
+        console.log("Got books from server");
+        if (this._observer) {
+          this._observer.dataReady();
         }
       })
-      this._books.push(book);
-    }
-    */
+  }
 }
 
+export default new BookStore();
