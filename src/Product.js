@@ -41,9 +41,18 @@ export default class Product extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  addBook(bookStore) {
+    bookStore.addBook(this.state.title, this.state.info, this.state.moreInfo);
+    this.setState({
+      modalIsOpen: false
+    })
+  }
+
   render() {
     const books = this.props.route.bookStore.books;
     const bookStore = this.props.route.bookStore;
+
+
     return (
       <div>
         <h3>All our great books </h3>
@@ -64,7 +73,7 @@ export default class Product extends React.Component {
             <input name="title" value={this.state.title} onChange={this.handleChange} type="text" />
             <input name="info" value={this.state.info} onChange={this.handleChange} type="text" />
             <input name="moreInfo" value={this.state.moreInfo} onChange={this.handleChange} type="text" />
-            <button onClick={() => bookStore.addBook(this.state.title, this.state.info, this.state.moreInfo)}>Add new Book</button>
+            <button to={'products'} onClick={() => this.addBook(bookStore)}>Add new Book</button>
             <button onClick={this.closeModal}>Close</button>
           </Modal>
         </div>
